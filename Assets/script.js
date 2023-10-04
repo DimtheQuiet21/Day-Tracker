@@ -1,6 +1,20 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
+
+var timeclock = dayjs();
+var timeslot = document.getElementById("currentDay");
+
+
+    // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
+setInterval(function () {
+    timeclock = dayjs();
+    $(timeslot).text(timeclock.format('MMM D, YYYY [at] hh[:]mm[:]ss A '));
+    }, 1000);
+    console.log(timeslot);
+
+
+
 $(function () {
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
