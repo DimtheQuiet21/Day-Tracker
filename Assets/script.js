@@ -24,47 +24,40 @@ setInterval(function(){
 
 function pageset (){
   statichour = currenthour; // update the static hour
-  for (i = 7; i < 19; i++){
-    var main = document.querySelector("main");
-    var hourslot = document.createElement("div");
-    var hourtag =  document.createElement("div");
-    var textbox =  document.createElement("textarea");
-    var hourbutton = document.createElement("button");
-    var buttonicon = document.createElement("i");
+  for (i = 7; i < 24; i++){
+    var main = $('main');
+    //var hourslot = document.createElement("div");
+    var hourslot = $('<div class = "row time-block">');
+    var hourtag =  $('<div class = "col-2 col-md-1 hour text-center py-3">');
+    var textbox =  $('<textarea class = "col-8 col-md-10 description" rows = "3">');
+    var hourbutton = $('<button class = "btn saveBtn col-2 col-md-1" aria-label = "save">');
+    var buttonicon = $('<i class = "fas fa-save" aria-hidden = "true">');
 
-    hourslot.setAttribute("id", "hour-"+i);
+    $(hourslot).attr("id", "hour-"+i);
 
     if (i> currenthour) {
-      hourslot.setAttribute("class", "row time-block future");
+      hourslot.addClass("future");
     } else if (i===currenthour) {
-      hourslot.setAttribute("class", "row time-block present");
+      hourslot.addClass("present");
     } else if (i < currenthour) {
-      hourslot.setAttribute("class", "row time-block past");
-    }
-
-    hourtag.setAttribute("class","col-2 col-md-1 hour text-center py-3");
-    if (i === 0){
-      hourtag.innerHTML = "12:00 AM"
-    } else if (i>=0 && i<=11){
-      hourtag.innerHTML = i+":00 AM";
-    } else if (i === 12){
-      hourtag.innerHTML = i+":00 PM";
-    } else if (i>12) {
-      hourtag.innerHTML = i-12+":00 PM";
+      hourslot.addClass("past");
     };
-    
-    textbox.setAttribute("class","col-8 col-md-10 description");
-    textbox.setAttribute("rows","3");
-    hourbutton.setAttribute("class", "btn saveBtn col-2 col-md-1");
-    hourbutton.setAttribute("aria-label","save");
-    buttonicon.setAttribute("class","fas fa-save");
-    buttonicon.setAttribute("aria-hidden","true");
 
-    main.appendChild(hourslot);
-    hourslot.appendChild(hourtag);
-    hourslot.appendChild(textbox);
-    hourslot.appendChild(hourbutton);
-    hourbutton.appendChild(buttonicon);
+    if (i === 0){
+      hourtag.text("12:00 AM")
+    } else if (i>=0 && i<=11){
+      hourtag.text(i+":00 AM");
+    } else if (i === 12){
+      hourtag.text(i+":00 PM");
+    } else if (i>12) {
+      hourtag.text(i-12+":00 PM");
+    };
+  
+    main.append(hourslot);
+    hourslot.append(hourtag);
+    hourslot.append(textbox);
+    hourslot.append(hourbutton);
+    hourbutton.append(buttonicon);
   };
 }
 
