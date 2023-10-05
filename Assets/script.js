@@ -20,6 +20,8 @@ function resetpage (){
     var hourremove = $("#hour-"+i);
     hourremove.remove();
   };
+  $(currentslot).append(blankbar);
+  $(currentslot).append(timebar);  
   };
 
 function pageset (){
@@ -89,8 +91,8 @@ function pageset (){
 resetpage();
 pageset();
 
-$(currentslot).append(blankbar);
-$(currentslot).append(timebar);
+$(currentslot).append(blankbar); //We run this once on page load, but for the rest of the time, it's all done with reset.
+$(currentslot).append(timebar);  
 
 // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
 // This is our clock at the top of the page.
