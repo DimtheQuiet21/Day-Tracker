@@ -14,15 +14,31 @@ var timebar = $('<div class = "col-8 col-md-10 timebar">');
 var blankbar =$('<div class = "col-2 col-md-1 blankbar">')
 var currentslot = '';
 
+// Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
+// This is our clock at the top of the page.
+setInterval(function () {
+  timeclock = dayjs();
+  $(timeslot).text(timeclock.format('MMM D, YYYY [at] hh[:]mm[:]ss A '));
+  timebar.attr("style","bottom: "+(10-(timeclock.minute()/60)*10)+"vh")//sets the position of the scroll bar
+  }, 1000);
+
+// Let's make another interval that updates every hour on the hour.
+setInterval(function(){
+currenthour = timeclock.$H // always be updating the dynamic hour
+if (currenthour !== statichour) {
+  resetpage();
+  pageset (); // redo the page
+  sticktimebar();
+}
+},1000) // We check every second, not too much of a task I hope.
+
 
 function resetpage (){
   for (i = 7; i < 24; i++){
     var hourremove = $("#hour-"+i);
     hourremove.remove();
-  };
-  $(currentslot).append(blankbar);
-  $(currentslot).append(timebar);  
-  };
+  }; 
+};
 
 function pageset (){
   statichour = currenthour; // update the static hour
@@ -86,29 +102,15 @@ function pageset (){
   };
 }
 
+function sticktimebar(){
+  $(currentslot).append(blankbar);
+  $(currentslot).append(timebar); 
+};
 
 //do one load of the page to get us started. But reload every hour.
 resetpage();
 pageset();
+sticktimebar();
 
-$(currentslot).append(blankbar); //We run this once on page load, but for the rest of the time, it's all done with reset.
-$(currentslot).append(timebar);  
-
-// Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
-// This is our clock at the top of the page.
-setInterval(function () {
-  timeclock = dayjs();
-  $(timeslot).text(timeclock.format('MMM D, YYYY [at] hh[:]mm[:]ss A '));
-  timebar.attr("style","bottom: "+(10-(timeclock.minute()/60)*10)+"vh")//sets the position of the scroll bar
-  }, 1000);
-
-// Let's make another interval that updates every hour on the hour.
-setInterval(function(){
-currenthour = timeclock.$H // always be updating the dynamic hour
-if (currenthour !== statichour) {
-  resetpage();
-  pageset (); // redo the page
-}
-},1000) // We check every second, not too much of a task I hope.
 
 
