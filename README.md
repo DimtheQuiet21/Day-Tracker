@@ -14,7 +14,7 @@ This current version of my day tracker features several things.
 
 ## Screenshot and Link
 
-![Screenshot of Alan Lee's Day Tracker](/assets/screenshot.PNG?raw=true "Alan Lee's Day Tracker")
+![Screenshot of Alan Lee's Day Tracker](/assets/images/screenshot.png?raw=true "Alan Lee's Day Tracker")
 
 Link to Alan Lee's Day Tracker https://dimthequiet21.github.io/Day-Tracker/
 
