@@ -1,4 +1,4 @@
-# Day-Tracker from Starter Code - by Alan Lee
+# Daily Task Tracker by Alan Lee
 A repository for a day tracker that helps you organize your day!
 
 ## Description
